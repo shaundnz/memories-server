@@ -12,8 +12,6 @@ app.use(cors())
 app.use(bodyParser.json({limit: '30mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true}))
 
-const PORT = process.env.PORT|| 5000;
-
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path} - ${req.ip}`)
     next()
@@ -25,8 +23,10 @@ app.get('/', (req, res) => {
     res.send("Hello to memories API")
 })
 
+const PORT = process.env.PORT || 5000;
+
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => app.listen(process.env.PORT, () => console.log(`Server running on port: ${PORT}`)))
+    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
     .catch((err) => console.log(err.message))
 
 mongoose.set('useFindAndModify', false)
