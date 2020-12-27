@@ -24,8 +24,10 @@ app.get('/', (req, res) => {
 })
 
 const PORT = process.env.PORT || 5000;
+const CONNECTION_URL = "mongodb+srv://Shaun:f0QqLrLaYBm4SVix@cluster0.opfq3.mongodb.net/memories?retryWrites=true&w=majority";
 
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
+
+mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
     .catch((err) => console.log(err.message))
 
